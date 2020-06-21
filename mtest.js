@@ -2,16 +2,19 @@ let x = 0
 let mtestx = 0
 let mtestx2 = 0
 var button
+var slider
 
 
 function setup() {
   createElement('h1','The Vertical Distortion Game')
   createP('Richard Breazeale, M.D.')
-  createDiv('If you see distortion in the vertical white line below, then click the button (below) until the distortion goes away')
+  createDiv('If you see distortion in the vertical white line below, then move the slider and click the button until the distortion goes away, then see your distortion score.')
   //createP('The score is measured in pixels.')
-  createCanvas(400, 400);
-  button = createButton('Click here')//naming the button
+  createCanvas(200, 200);
+  createP("")
+  button = createButton('Redraw')//naming the button
   button.mousePressed(drawAgain)
+  slider = createSlider(0,20,0)
   background(0);
   noLoop();
 }
@@ -25,23 +28,23 @@ function draw() {
   for(y=0;y<height;y=y+1+x){
     noStroke()
   fill(255)
-ellipse(200,y,1,1)
+ellipse(100,y,1,1)
 }
 //fixation dots
 
-  ellipse (175, 200, 5, 1)
-  ellipse (225, 200, 5, 1)
+  ellipse (90, height/2, 5, 1)
+  ellipse (110, height/2, 5, 1)
 
 //note how many cycles in console log to give m-score
   //console.log(x)
   text('Vertical distortion score is ' + x +' pixels.', 10, 20)
   //h1 = createP('The vertical distortion score is ' + x + ' pixels')
 
-x=x+1//control the number of pixel spaces to add with
+x=slider.value()//control the number of pixel spaces to add with
 //each redraw
 }
 function drawAgain(){
-  redraw(1);
+  redraw(2);
 }
 //function mousePressed() {
   // drawAgain()
